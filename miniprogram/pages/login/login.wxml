@@ -1,0 +1,15 @@
+<!--login.wxml-->
+<view class="container">
+  <view>
+    <view wx:if="{{canIUse}}">
+      <view class="header"></view>
+      <view class="content">
+        <view>申请获取以下权限:</view>
+        <text>获得你的公开信息(昵称、头像、地区及性别等)</text>
+      </view>
+      <!-- <button open-type="getUserInfo" class='bottom' type='primary' bindgetuserinfo="bindGetUserInfo">授权</button> -->
+      <button class='bottom' type='primary' open-type="getUserInfo" bindtap="getUserProfile" size="default">授权登录</button>
+    </view>
+    <view wx:else>请升级微信版本</view>
+  </view>
+</view>
