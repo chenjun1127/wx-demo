@@ -1,6 +1,14 @@
 <!--index.wxml-->
 <view class="container">
   <view>
-     index
+    index
+  </view>
+  <view class="bottom">
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+      <view class="picker">
+        当前选择：{{array[index]}}
+      </view>
+    </picker>
+    <input placeholder="请输入手机号码" maxlength="11" type="tel" bindinput="getInput" />
   </view>
 </view>

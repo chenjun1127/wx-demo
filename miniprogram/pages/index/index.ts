@@ -9,7 +9,8 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     canIUseGetUserProfile: false,
-    canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName') // 如需尝试获取用户信息可改为false
+    canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName'),// 如需尝试获取用户信息可改为false
+    array: ['美国', '中国', '巴西', '日本'],
   },
   // 事件处理函数
   bindViewTap() {
@@ -18,40 +19,20 @@ Page({
     })
   },
   onLoad() {
-    console.log(wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName'))
-    // @ts-ignore
-    if (wx.getUserProfile) {
-      console.log(1111)
-      this.setData({
-        canIUseGetUserProfile: true
+    var userInfo = wx.getStorageSync('userInfo');
+    console.log(Object.keys(userInfo).length > 0);
+    if (Object.keys(userInfo).length > 0) {
+      console.log('用户已经授权过')
+    } else {
+      wx.reLaunch({
+        url: '/pages/login/login'
       })
     }
   },
-
-  bindGetUserInfo(e: any) {
-    // 不推荐使用getUserInfo获取用户信息，预计自2021年4月13日起，getUserInfo将不再弹出弹窗，并直接返回匿名的用户个人信息
-    console.log(e)
-    if (e.detail.errMsg != 'getUserInfo:fail auth deny') {
-      console.log(111)
-      wx.reLaunch({
-        url: '/pages/index/index'
-      })
-    }else{
-      wx.showModal({
-        title: '警告',
-        content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',
-        showCancel: false,
-        confirmText: '返回授权', 
-        success:(res:any)=>{
-          if (res.confirm) {
-            
-          }
-        }
-      })
-    }
+  bindPickerChange: function (e: any) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
+      index: e.detail.value
     })
-  }
+  },
 })

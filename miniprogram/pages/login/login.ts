@@ -5,7 +5,7 @@ const app = getApp()
 Page({
   data: {
     motto: 'Hello World',
-    userInfo: {},
+    userInfo: {} as any,
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     canIUseGetUserProfile: false,
@@ -19,6 +19,7 @@ Page({
   },
   onLoad() {
 
+
   },
   getUserProfile() {
     // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
@@ -30,9 +31,7 @@ Page({
         // 写入缓存
         wx.setStorageSync('userInfo', userInfo)
         // 更新用户信息
-        this.setData({
-          userInfo: userInfo,
-        })
+        this.setData({ userInfo })
         // 登录成功提示
         wx.showToast({
           title: '登录成功',
@@ -58,7 +57,6 @@ Page({
   },
   bindGetUserInfo(e: any) {
     // 不推荐使用getUserInfo获取用户信息，预计自2021年4月13日起，getUserInfo将不再弹出弹窗，并直接返回匿名的用户个人信息
-    console.log(e)
     if (e.detail.errMsg != 'getUserInfo:fail auth deny') {
       app.isLogin();
       wx.reLaunch({
