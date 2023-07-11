@@ -37,10 +37,11 @@ Page({
       index: e.detail.value
     })
   },
-  bindTips: () => {
-    // wx.showModal(
-
-    // );
+  bindTips() {
+    console.log(111)
+    this.setData({
+      showModal: true
+    })
   },
   toNavigator() {
     wx.navigateTo({
