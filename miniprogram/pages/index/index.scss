@@ -2,7 +2,7 @@
   width: 100%;
   height: 100vh;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   flex-direction: column;
   background-size: cover;
   background-position: center 0%;
@@ -12,9 +12,9 @@
   .bottom-content {
     height: 50%;
     width: 100%;
-    margin-top: 260px;
     box-sizing: border-box;
-    padding: 0 40px;
+    padding: 0 80rpx;
+    position: relative;
 
     picker {
       @extend .input-default;
@@ -28,20 +28,20 @@
       @extend .input-default;
       background: rgb(238, 10, 105) !important;
       color: #fff;
-      font-size: 14px;
+      font-size: 28rpx;
     }
 
     .radio-content,
     .tips-content {
       display: flex;
       align-items: center;
-      font-size: 12px;
+      font-size: 24rpx;
       color: #fff;
     }
 
     .radio-content {
-
       .radio {
+        font-size: 24prx;
         text {
           vertical-align: middle;
 
@@ -53,8 +53,10 @@
     }
 
     .tips-content {
-      padding-top: 60px;
-      justify-content: flex-end;
+      position: absolute;
+      right: 88rpx;
+      bottom: 40rpx;
+      font-size: 28rpx; 
 
       view {
         margin-left: 10px;
@@ -67,12 +69,12 @@
   padding: 0;
   margin: 0;
   border: none;
-  height: 30px;
-  line-height: 30px;
-  border-radius: 15px;
+  height: 88rpx;
+  line-height: 88rpx;
+  border-radius: 44rpx;
   font-size: 12px;
   background-color: ghostwhite;
-  margin-bottom: 12px;
+  margin-bottom: 20px;
   text-align: center;
   display: block;
   width: 100%;
