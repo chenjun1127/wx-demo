@@ -8,6 +8,9 @@
   background-color: #fff;
   overflow-x: auto;
   white-space: nowrap;
+  .tab-item{
+    color: gold;
+  }
 }
 
 .tab-text {
@@ -15,6 +18,7 @@
   line-height: 70rpx;
   font-weight: 400;
   text-align: center;
+  color: #888;
 }
 
 .line {

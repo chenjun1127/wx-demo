@@ -13,6 +13,7 @@ Component({
   },
   observers: {
     'tabList'(val) {
+      console.log(val)
       if (val && val.length) {
         this.changeline()
       }

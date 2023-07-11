@@ -5,8 +5,9 @@
 Page({
   data: {
     tabList: [
-      { name: '正在热映', type: 1 },
-      { name: '即将上映', type: 0 }
+      { name: '审核中', type: 1 },
+      { name: '已通过', type: 0 },
+      { name: '已拒绝', type: 0 }
     ]
   },
   onLoad() {
