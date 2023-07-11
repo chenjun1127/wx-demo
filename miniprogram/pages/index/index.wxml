@@ -1,14 +1,23 @@
 <!--index.wxml-->
-<view class="container">
-  <view>
-    index
-  </view>
-  <view class="bottom">
+<view class="main-page">
+  <!-- <image src="../../images/bg.jpeg" mode="scaleToFill" /> -->
+  <view class="bottom-content">
     <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
       <view class="picker">
-        当前选择：{{array[index]}}
+        {{array[index]}}
       </view>
     </picker>
     <input placeholder="请输入手机号码" maxlength="11" type="tel" bindinput="getInput" />
+    <button class="submit-button" bindinput="bindSubmit">我要提交</button>
+    <view class="radio-content">
+      <label class="radio">
+        <radio value="r1" checked="true" style="transform: scale(0.7)" class="small-radio" /> <text>已阅读并同意<text bindtap="bindTips">《微信会员协议》</text></text>
+      </label>
+    </view>
+    <view class="tips-content">
+      <view bindtap="bindTips">活动说明</view>
+      <view bindtap="toNavigator">我的抽奖</view>
+    </view>
   </view>
+  <modal :showModal="{{showModal}}" :openModal="bindOpenModal" :confirm="bindConfirm" :cancel="bindCancel"></modal>
 </view>

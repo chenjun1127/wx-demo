@@ -1,19 +1,18 @@
 // logs.ts
 // const util = require('../../utils/util.js')
-import { formatTime } from '../../utils/util'
+// import { formatTime } from '../../utils/util'
 
 Page({
   data: {
-    logs: [],
+    tabList: [
+      { name: '正在热映', type: 1 },
+      { name: '即将上映', type: 0 }
+    ]
   },
   onLoad() {
-    this.setData({
-      logs: (wx.getStorageSync('logs') || []).map((log: string) => {
-        return {
-          date: formatTime(new Date(log)),
-          timeStamp: log
-        }
-      }),
-    })
+
+  },
+  handleSwitch(e: any) {
+    console.log(e) // { name: '即将上映', type: 0}
   },
 })

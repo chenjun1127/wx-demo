@@ -1,0 +1,33 @@
+.tabs {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 80rpx;
+  justify-content: space-around;
+  position: relative;
+  background-color: #fff;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.tab-text {
+  font-size: 28rpx;
+  line-height: 70rpx;
+  font-weight: 400;
+  text-align: center;
+}
+
+.line {
+  background: #ffaa7f;
+  border-radius: 4rpx;
+  height: 8rpx;
+  width: 40rpx;
+  position: absolute;
+  bottom: 4rpx;
+  transition: all 0.3s linear;
+}
+
+.active {
+  color: #ffaa7f;
+  border-color: #ffaa7f;
+}

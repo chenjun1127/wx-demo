@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "美食秀",
-  "usingComponents": {}
+  "usingComponents": {
+    "tabs":"../../components/tabs/tabs"
+  }
 }

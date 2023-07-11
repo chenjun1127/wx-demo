@@ -1,1 +1,17 @@
 /* pages/lottery/lottery.wxss */
+page { 
+  background: #f2f2f2;
+}
+.container { 
+  width: 100%;
+}
+.switch-tab { 
+  width: 100%;
+  background: #fff;
+  color: #888;
+  box-shadow: 0rpx 9rpx 9rpx 0rpx rgba(194, 190, 190, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}

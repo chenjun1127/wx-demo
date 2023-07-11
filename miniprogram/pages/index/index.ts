@@ -11,6 +11,8 @@ Page({
     canIUseGetUserProfile: false,
     canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName'),// 如需尝试获取用户信息可改为false
     array: ['美国', '中国', '巴西', '日本'],
+    index: 0,
+    showModal: false,
   },
   // 事件处理函数
   bindViewTap() {
@@ -35,4 +37,26 @@ Page({
       index: e.detail.value
     })
   },
+  bindTips: () => {
+    // wx.showModal(
+
+    // );
+  },
+  toNavigator() {
+    wx.navigateTo({
+      url: '/pages/lottery/lottery'
+    })
+  },
+
+  // imgClick:function(){
+  //   var imgUrl = 'this.data.priceUrl';
+  //   console.log('imgClick success',imgUrl)
+  //   wx.previewImage({
+  //     urls: imgUrl,//imgUrl 必须是需要预览的图片链接列表，只有一张图片也需要是列表
+  //     success:(res=>{
+  //       console.log('接口调用成功',res)
+  //     })
+  //   })
+  // },
+
 })
