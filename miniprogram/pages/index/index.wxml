@@ -1,7 +1,9 @@
 <!--index.wxml-->
-<view class="main-page">
-  <!-- <image src="../../images/bg.jpeg" mode="scaleToFill" /> -->
-  <view class="bottom-content">
+<view class="main">
+  <view class="main-img">
+    <image src="../../images/banner.png" mode="aspectFill" />
+  </view>
+  <view class="main-content">
     <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
       <view class="picker">
         {{array[index]}}
