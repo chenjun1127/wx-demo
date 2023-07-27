@@ -1,7 +1,9 @@
 // index.ts
 // 获取应用实例
-
-
+// @ts-ignore
+const regeneratorRuntime = require('../../utils/runtime.js')
+import { getImgBase64, getNetWorkImgBase64 } from '../../utils/imgUtils';
+import { scanAdd } from '../../api/index';
 Page({
   data: {
     motto: 'Hello World',
@@ -14,6 +16,7 @@ Page({
     index: 0,
     showModal: false,
     showModal2: false,
+    isHidden: true
   },
   // 事件处理函数
   bindViewTap() {
@@ -54,12 +57,12 @@ Page({
       showModal: false
     })
   },
-  bindCancel(e: any) {
+  bindCancel() {
     this.setData({
       showModal: false
     })
   },
-  bindTips2() { 
+  bindTips2() {
     this.setData({
       showModal2: true
     })
@@ -69,11 +72,52 @@ Page({
       showModal2: false
     })
   },
-  bindCancel2(e: any) {
+  bindCancel2() {
     this.setData({
       showModal2: false
     })
   },
+  bindUploadImg() {
+    // 1.选择一张本地的照片
+    wx.chooseMedia({       //定义选择图片的返回值
+      count: 1,
+      mediaType: ['image'],
+      sourceType: ['album', 'camera'],
+      sizeType: ['compressed'],
+      camera: 'back',
+      success: async (res: any) => {
+        let picFile = res.tempFiles[0].tempFilePath
+        const picData = await getImgBase64(picFile);
+        const userInfo = wx.getStorageSync('userInfo');
+        console.log(userInfo);
+        if (!userInfo) return;
+        const avatarPicBase64 = await getNetWorkImgBase64(userInfo.avatarUrl);
+        console.log(avatarPicBase64);
+        const data = await scanAdd({
+          "comment": {
+            "wechatName": userInfo.nickName,
+            "phone": "12345678999",
+            "remark": "备注",
+            "comName": "商户名称",
+            "comLocation": "商户位置",
+            "usrId": "1"
+          },
+          "map": {
+            "wechatAvatar": avatarPicBase64,
+            "pictro": picData
+          }
+        })
+        console.log(data)
+      }
+    })
+  },
+  handleImgShow() {
+    this.setData({ isHidden: false })
+  },
+  handleImgHide() {
+    this.setData({ isHidden: true })
+  },
+
   // imgClick:function(){
   //   var imgUrl = 'this.data.priceUrl';
   //   console.log('imgClick success',imgUrl)
