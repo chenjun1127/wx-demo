@@ -13,6 +13,7 @@ Page({
     array: ['美国', '中国', '巴西', '日本'],
     index: 0,
     showModal: false,
+    showModal2: false,
   },
   // 事件处理函数
   bindViewTap() {
@@ -48,7 +49,31 @@ Page({
       url: '/pages/lottery/lottery'
     })
   },
-
+  bindConfirm() {
+    this.setData({
+      showModal: false
+    })
+  },
+  bindCancel(e: any) {
+    this.setData({
+      showModal: false
+    })
+  },
+  bindTips2() { 
+    this.setData({
+      showModal2: true
+    })
+  },
+  bindConfirm2() {
+    this.setData({
+      showModal2: false
+    })
+  },
+  bindCancel2(e: any) {
+    this.setData({
+      showModal2: false
+    })
+  },
   // imgClick:function(){
   //   var imgUrl = 'this.data.priceUrl';
   //   console.log('imgClick success',imgUrl)

@@ -8,8 +8,9 @@
   background-color: #fff;
   overflow-x: auto;
   white-space: nowrap;
-  .tab-item{
-    color: gold;
+
+  .tab-item {
+    flex: 1;
   }
 }
 

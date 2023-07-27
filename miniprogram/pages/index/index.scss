@@ -2,9 +2,12 @@
   width: 100%;
   height: 100vh;
   background-color: #282034;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 
   &-img {
-    position: relative;
     height: 100vh;
     width: 100%;
     position: absolute;
@@ -18,17 +21,68 @@
     }
   }
 
+  &-demo {
+    height: 600rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 40rpx;
+
+    .demo-img {
+      position: relative;
+      image {
+        display: block;
+        height: 300rpx;
+        width: 200rpx;
+        margin: 0 auto;
+        border: rgb(238, 10, 105) solid 1px;
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: 16rpx;
+      }
+
+      &-tips {
+        position: absolute;
+        font-size: 24rpx;
+        color: #FFA144;
+        left: 50%;
+        transform: translateX(-50%);
+        top: -10px;
+        background-color: yellow;
+        padding: 2px;
+        color: #000;
+        border-radius: 4px;
+        overflow: hidden;
+        border: 1px solid #f90;
+      }
+    }
+
+    &-button {
+      height: 72rpx;
+      line-height: 72rpx;
+      border-radius: 15px;
+      background-color: #f90;
+      color: rgb(238, 10, 105);
+      font-size: 28rpx;
+      padding: 0;
+      margin: 0;
+      border: 0;
+    }
+
+    &-text {
+      font-size: 28rpx;
+      color: #fff;
+      text-align: center;
+      padding: 5px 0;
+    }
+  }
+
   &-content {
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
     width: 100%;
     box-sizing: border-box;
     padding: 0 80rpx;
-    position: relative;
-    padding-top: 50%;
     z-index: 1;
+    padding-bottom: 80rpx;
 
     picker {
       @extend .input-default;
@@ -57,12 +111,8 @@
       .radio {
         font-size: 24prx;
 
-        text {
-          vertical-align: middle;
-
-          text {
-            color: rgba(238, 97, 15, 0.89);
-          }
+        .tips {
+          color: #FFA144;
         }
       }
     }
@@ -70,7 +120,7 @@
     .tips-content {
       position: absolute;
       right: 88rpx;
-      bottom: 40rpx;
+      bottom: 20rpx;
       font-size: 28rpx;
 
       view {
@@ -93,4 +143,40 @@
   text-align: center;
   display: block;
   width: 100%;
+}
+
+.content {
+  font-size: 24rpx;
+  color: #888;
+
+  .h1 {
+    font-size: 40rpx;
+    color: #333;
+    padding-bottom: 30rpx;
+    text-align: center;
+  }
+
+  .info {
+    color: rgb(238, 80, 40);
+  }
+
+  &-text {
+    overflow-y: scroll;
+    height: 400rpx;
+    line-height: 1.8em;
+    padding-bottom: 20prx;
+
+    text {
+      display: inline-block;
+    }
+
+    .text-indent {
+      text-indent: 0;
+    }
+  }
+
+  .font16 {
+    font-size: 32rpx;
+    color: #333;
+  }
 }

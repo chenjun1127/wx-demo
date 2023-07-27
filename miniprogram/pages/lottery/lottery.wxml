@@ -1,6 +1,12 @@
 <!--logs.wxml-->
-<view class="container">
+<view class="container-box">
+  <view class="tips-img">
+    <image src="../../images/tips.png" mode="widthFix" />
+  </view>
   <view class="switch-tab">
     <tabs tabList="{{tabList}}" bind:getCurrentValue="handleSwitch"></tabs>
+  </view>
+  <view wx:for="{{tabList.length}}" wx:key="index">
+    <view wx:if="{{tabIndex==index}}">{{index}}</view>
   </view>
 </view>

@@ -5,15 +5,16 @@
 Page({
   data: {
     tabList: [
-      { name: '审核中', type: 1 },
-      { name: '已通过', type: 0 },
-      { name: '已拒绝', type: 0 }
-    ]
+      { name: '审核中', type: 0 },
+      { name: '已通过', type: 1 },
+      { name: '已拒绝', type: 2 }
+    ],
+    tabIndex: 0,
   },
   onLoad() {
 
   },
   handleSwitch(e: any) {
-    console.log(e) // { name: '即将上映', type: 0}
+    this.setData({ tabIndex: e.detail.type })
   },
 })

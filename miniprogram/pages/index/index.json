@@ -1,5 +1,5 @@
 {
   "usingComponents": {
-    "modal":"../../components/modal/modal"
+    "my-modal": "../../components/modal/modal"
   }
 }

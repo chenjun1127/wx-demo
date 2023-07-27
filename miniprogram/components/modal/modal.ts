@@ -1,4 +1,4 @@
-// components/dialog.ts
+// components/modal/modal.ts
 Component({
   /**
    * 组件的属性列表
@@ -6,15 +6,21 @@ Component({
   properties: {
     showModal: {
       type: Boolean,
-      value: false,
+      value: true,
+    },
+    showFooter:{
+      type:Boolean,
+      value:false,
     }
   },
-
+  options: {
+    multipleSlots: true // 开启多个插槽支持
+  },
   /**
    * 组件的初始数据
    */
   data: {
-   
+
   },
 
   /**
@@ -22,17 +28,17 @@ Component({
    */
   methods: {
     openModal() {
-      this.triggerEvent('openModal', true);
+      this.triggerEvent('openModal', { value: true });
     },
 
     confirm() {
       // 确认按钮点击事件处理逻辑
-      this.triggerEvent('confirm', false);
+      this.triggerEvent('confirm', { value: false });
     },
 
     cancel() {
       // 取消按钮点击事件处理逻辑
-      this.triggerEvent('cancel', false);
+      this.triggerEvent('cancel', { value: false, });
     }
   }
 })

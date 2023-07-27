@@ -1,14 +1,17 @@
+<!--components/modal/modal.wxml-->
 <view class="mask" wx:if="{{showModal}}">
   <view class="modal">
-    <!-- 弹窗内容 -->
     <view class="content">
-      <text>这是一个弹窗！</text>
+      <slot name="content"></slot>
       <!-- 弹窗中的其他内容 -->
     </view>
     <!-- 弹窗底部按钮 -->
-    <view class="footer">
-      <button bindtap="confirm">确定</button>
-      <button bindtap="cancel">取消</button>
+    <view class="footer" wx:if="{{showFooter}}">
+      <button bindtap="confirm">我知道了</button>
+      <!-- <button bindtap="cancel">取消</button> -->
+    </view>
+    <view class="close" bindtap="cancel">
+      <image src="../../images/close.png" mode=""/>
     </view>
   </view>
 </view>

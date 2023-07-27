@@ -3,6 +3,14 @@
   <view class="main-img">
     <image src="../../images/banner.png" mode="aspectFill" />
   </view>
+  <view class="main-demo">
+    <view class="demo-img">
+      <image src="../../images/demo.jpg" mode=" " />
+      <view class="demo-img-tips">参考示例</view>
+    </view>
+    <button class="main-demo-button" style="width: 300rpx;">上传评价截图</button>
+    <view class="main-demo-text">温馨提示：请按参考示例上传</view>
+  </view>
   <view class="main-content">
     <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
       <view class="picker">
@@ -13,13 +21,36 @@
     <button class="submit-button" bindinput="bindSubmit">我要提交</button>
     <view class="radio-content">
       <label class="radio">
-        <radio value="r1" checked="true" style="transform: scale(0.7)" class="small-radio" /> <text>已阅读并同意<text bindtap="bindTips">《微信会员协议》</text></text>
+        <radio value="r1" checked="true" style="transform: scale(0.6)" class="small-radio" /> <text>已阅读并同意<text bindtap="bindTips" class="tips">《微信会员协议》</text></text>
       </label>
     </view>
     <view class="tips-content">
-      <view bindtap="bindTips">活动说明</view>
+      <view bindtap="bindTips2">活动说明</view>
       <view bindtap="toNavigator">我的抽奖</view>
     </view>
   </view>
-  <modal :showModal="{{showModal}}" :openModal="bindOpenModal" :confirm="bindConfirm" :cancel="bindCancel"></modal>
+  <my-modal showModal="{{showModal}}" bind:confirm="bindConfirm" bind:cancel="bindCancel">
+    <view class="content" slot="content">
+      <view class="h1">活动协议</view>
+      <view class="content-text">
+        <text>请仔细阅读以下协议，如您不同意或无法清楚理解以下任一条款，请勿进行后续操作。您勾选同意本协议即表示您同意本协议的所有内容。</text>
+        <text> 1、为进一步享受本小程序给您提供的会员服务，您在此授权：</text>
+        <text class="text-indent">（1）、本小程序将输入您的手机尾号或订单信息与本店微信公众号绑定；</text>
+        <text class="text-indent">（2）、本小程序将您的手机尾号对应的订单信息传递或同步到本店会员管理软件；</text>
+        <text>2、您理解并认可，本小程序获取您的信息来自商家，本小程序仅对获取的信息展示给商家，如您对展示的信息内容有疑问的，请联系商家，并以商家告知的信息为准。本小程序不保证信息的真实性、完整性、准确性、及时性，如您因使用展示的信息而导致了任何损失，本小程序不承担责任。</text>
+        <text>3、本小程序不会将您的任何信息提供给第三方，并保证您的信息不会用于与小程序运营或店铺经营无关的活动。</text>
+      </view>
+    </view>
+  </my-modal>
+  <my-modal showModal="{{showModal2}}" showFooter="{{true}}" bind:confirm="bindConfirm2" bind:cancel="bindCancel2">
+    <view class="content" slot="content">
+      <view class="h1 info">活动说明</view>
+      <view class="content-text font16">
+        <text>1、请参考提示上传正确的截图</text>
+        <text>2、每个订单仅能领取一次红包</text>
+        <text>3、订单信息提交成功后需店主手动审核并由系统发出红包</text>
+        <text>4、审核通过后请在微信的[服务通知]中领取红包，并于24小时内领取，若未领取红包将自动退回</text>
+      </view>
+    </view>
+  </my-modal>
 </view>
