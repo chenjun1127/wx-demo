@@ -32,6 +32,7 @@ Page({
         wx.setStorageSync('userInfo', userInfo)
         // 更新用户信息
         this.setData({ userInfo })
+        
         // 登录成功提示
         wx.showToast({
           title: '登录成功',
@@ -76,5 +77,5 @@ Page({
       })
     }
 
-  }
+  },
 })

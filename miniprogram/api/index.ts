@@ -5,3 +5,10 @@ export function scanAdd(params: any){
     data: params
   })
 }
+
+export function scanFind(params: any){
+  return RequestInstance.post({
+    url: '/scan/find',
+    data: params
+  })
+}

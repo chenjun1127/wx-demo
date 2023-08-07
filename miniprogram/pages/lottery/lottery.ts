@@ -2,6 +2,8 @@
 // const util = require('../../utils/util.js')
 // import { formatTime } from '../../utils/util'
 
+import { scanFind } from "../../api";
+
 Page({
   data: {
     tabList: [
@@ -12,9 +14,25 @@ Page({
     tabIndex: 0,
   },
   onLoad() {
-
+    this.getData();
   },
   handleSwitch(e: any) {
     this.setData({ tabIndex: e.detail.type })
   },
+  getData(){
+    // const data =   scanFind({
+    //   "comment": {
+    //     "wechatName": userInfo.nickName,
+    //     "phone": phone,
+    //     "remark": remark,
+    //     "comName": comName,
+    //     "comLocation": comLocation,
+    //     "usrId": userId
+    //   },
+    //   "map": {
+    //     "wechatAvatar": avatarPicData,
+    //     "pictro": picData
+    //   }
+    // })
+  }
 })

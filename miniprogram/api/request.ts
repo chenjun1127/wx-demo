@@ -20,7 +20,7 @@ class RequestInstance {
           //   reject(exceptionError);
           //   return;
           // }
-          if (res.data.code!==1) {
+          if (res.data.code !== 1) {
             reject(res.data);
           } else {
             resolve(res.data.map);

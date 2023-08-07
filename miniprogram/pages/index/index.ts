@@ -16,7 +16,15 @@ Page({
     index: 0,
     showModal: false,
     showModal2: false,
-    isHidden: true
+    isHidden: true,
+    picData: '',
+    avatarPicData: '',
+    phone: '',
+    comName: '',
+    comLocation: '',
+    remark: '',
+    userId: '',
+    wechatName: '',
   },
   // 事件处理函数
   bindViewTap() {
@@ -87,27 +95,44 @@ Page({
       camera: 'back',
       success: async (res: any) => {
         let picFile = res.tempFiles[0].tempFilePath
-        const picData = await getImgBase64(picFile);
+        const picData: any = await getImgBase64(picFile);
         const userInfo = wx.getStorageSync('userInfo');
         console.log(userInfo);
         if (!userInfo) return;
-        const avatarPicBase64 = await getNetWorkImgBase64(userInfo.avatarUrl);
+        const avatarPicBase64: any = await getNetWorkImgBase64(userInfo.avatarUrl);
         console.log(avatarPicBase64);
-        const data = await scanAdd({
-          "comment": {
-            "wechatName": userInfo.nickName,
-            "phone": "12345678999",
-            "remark": "备注",
-            "comName": "商户名称",
-            "comLocation": "商户位置",
-            "usrId": "1"
-          },
-          "map": {
-            "wechatAvatar": avatarPicBase64,
-            "pictro": picData
-          }
-        })
-        console.log(data)
+        this.setData({ avatarPicData: avatarPicBase64, picData: picData });
+
+      }
+    })
+  },
+  getInput(e: any) {
+    this.setData({ phone: e.detail.value })
+  },
+  async bindSubmit() {
+    console.log(this.data)
+    if (this.data.picData == "" || this.data.avatarPicData == "") {
+      wx.showToast({ title: "请上传评价图片！", icon: "none", duration: 1500 });
+      return;
+    }
+    const userInfo = wx.getStorageSync('userInfo');
+    if (!userInfo) {
+      console.log("微信信息获取失败！")
+      return;
+    };
+    const { avatarPicData, picData, phone, remark, comName, comLocation, userId } = this.data;
+    const data = await scanAdd({
+      "comment": {
+        "wechatName": userInfo.nickName,
+        "phone": phone,
+        "remark": remark,
+        "comName": comName,
+        "comLocation": comLocation,
+        "usrId": userId
+      },
+      "map": {
+        "wechatAvatar": avatarPicData,
+        "pictro": picData
       }
     })
   },
