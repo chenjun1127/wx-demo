@@ -2,7 +2,7 @@
 // const util = require('../../utils/util.js')
 // import { formatTime } from '../../utils/util'
 
-import { scanFind } from "../../api";
+import { scanFind } from '../../api/index';
 
 Page({
   data: {
@@ -20,19 +20,9 @@ Page({
     this.setData({ tabIndex: e.detail.type })
   },
   getData(){
-    // const data =   scanFind({
-    //   "comment": {
-    //     "wechatName": userInfo.nickName,
-    //     "phone": phone,
-    //     "remark": remark,
-    //     "comName": comName,
-    //     "comLocation": comLocation,
-    //     "usrId": userId
-    //   },
-    //   "map": {
-    //     "wechatAvatar": avatarPicData,
-    //     "pictro": picData
-    //   }
-    // })
+    const data =   scanFind({
+      "reOpenid": wx.getStorageSync('openid'),
+    })
+    console.log(data)
   }
 })

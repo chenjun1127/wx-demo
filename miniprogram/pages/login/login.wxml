@@ -1,17 +1,18 @@
 <!--login.wxml-->
-<view class="container">
-  <view>
-    <view wx:if="{{canIUse}}">
-      <view class="header"></view>
-      <view class="content">
-        <view>申请获取以下权限:</view>
-        <text>获得你的公开信息(昵称、头像、地区及性别等)</text>
-      </view>
-      <button class='bottom' type='primary' open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
-        <image class="avatar" src="{{avatarUrl}}"></image>
-      </button>
-      <input type="nickname" class="weui-input" placeholder="请输入昵称" />
+<view class="container-login">
+  <view wx:if="{{canIUse}}">
+    <view class="content">
+      <view>申请获取以下权限:</view>
+      <text>获得你的公开信息(昵称、头像、地区及性别等)</text>
     </view>
-    <view wx:else>请升级微信版本</view>
+    <button class='avatar-wrapper' open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+      <image class="avatar" src="{{avatarUrl}}"></image>
+    </button>
+    <view class="nickname">
+      <!-- <view class="nickname-view">昵称</view> -->
+      <input type="nickname" class="nickname-input" placeholder="请输入昵称" bindblur="getInputValue" />
+    </view>
+    <button type="primary" class="login-button" bindtap="bindLogin">登录</button>
   </view>
+  <view wx:else>请升级微信版本</view>
 </view>

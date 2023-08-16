@@ -6,17 +6,12 @@ const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia0
 Page({
   data: {
     avatarUrl: defaultAvatarUrl,
-    userInfo: {} as any,
- 
+    nickName: '',
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
- 
-
   },
   onChooseAvatar(e: any) {
     const { avatarUrl } = e.detail
-    this.setData({
-      avatarUrl,
-    })
+    this.setData({ avatarUrl })
   },
   // 事件处理函数
   bindViewTap() {
@@ -25,64 +20,23 @@ Page({
     })
   },
   onLoad() {
-
-
   },
-  getUserProfile() {
-    // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
-    wx.getUserProfile({
-      desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-      success: (res) => {
-        let userInfo = res.userInfo
-        console.log(userInfo)
-        // 写入缓存
-        wx.setStorageSync('userInfo', userInfo)
-        // 更新用户信息
-        this.setData({ userInfo })
-
-        // 登录成功提示
-        wx.showToast({
-          title: '登录成功',
-          icon: 'success',
-          duration: 1500,
-          success: function () {
-            setTimeout(() => {
-              wx.reLaunch({
-                url: '/pages/index/index'
-              })
-            }, 1000);
-          },
-        })
-      },
-      fail: () => {
-        wx.showToast({
-          title: '授权失败',
-          icon: 'error',
-          duration: 2000
-        })
+  bindLogin() {
+    if (this.data.nickName != '' && this.data.avatarUrl != '') {
+      const userInfo = {
+        avatarUrl: this.data.avatarUrl,
+        nickName: this.data.nickName,
       }
-    })
-  },
-  bindGetUserInfo(e: any) {
-    // 不推荐使用getUserInfo获取用户信息，预计自2021年4月13日起，getUserInfo将不再弹出弹窗，并直接返回匿名的用户个人信息
-    if (e.detail.errMsg != 'getUserInfo:fail auth deny') {
-      app.isLogin();
+      wx.setStorageSync('userInfo', userInfo)
       wx.reLaunch({
         url: '/pages/index/index'
       })
     } else {
-      wx.showModal({
-        title: '警告',
-        content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',
-        showCancel: false,
-        confirmText: '返回授权',
-        success: (res: any) => {
-          if (res.confirm) {
-
-          }
-        }
-      })
+      wx.showToast({ title: "请授权选择您的头像和昵称！", icon: "none", duration: 1500 });
     }
+  },
+  getInputValue(e: any) {
+    this.setData({ nickName: e.detail.value })
 
   },
 })

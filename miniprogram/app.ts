@@ -4,20 +4,30 @@ import { config } from "./config";
 App({
   globalData: {} as any,
   onLaunch() {
-    // 展示本地存储能力
-    const logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+    // // 展示本地存储能力
+    // const logs = wx.getStorageSync('logs') || []
+    // logs.unshift(Date.now())
+    // wx.setStorageSync('logs', logs)
     this.isLogin();
-
-
-
   },
-  isLogin: function () {
-    console.log(222)
+  isLogin() {
+    var userInfo = wx.getStorageSync('userInfo');
+    if (Object.keys(userInfo).length > 0) {
+      console.log('用户已经授权过')
+
+      wx.reLaunch({
+        url: '/pages/index/index'
+      })
+    } else {
+      wx.reLaunch({
+        url: '/pages/login/login'
+      })
+    }
+    this.getUserInfo();
+  },
+  getUserInfo: function () {
     wx.getSetting({
       success: (res: any) => {
-        console.log(res)
         if (res.authSetting['scope.userInfo']) {
           // wx.getUserInfo({
           //   success: (res: any) => {
@@ -37,6 +47,10 @@ App({
                 success: (res: any) => {
                   console.log(res);
                   console.log("用户的openid:" + res.data.openid);
+
+                  wx.setStorageSync('openid', res.data.openid)
+
+
                 }
               })
             },

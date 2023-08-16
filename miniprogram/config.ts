@@ -1,4 +1,4 @@
 export const config = {
-  appId: 'wx9162da75462b747d',
-  AppSecret: '51ef9aeab0456c5dfaa332cfc9d3febb'
+  appId: 'wx9167ecd478d3ce74',
+  AppSecret: '5a7cb5becde9ab1f4c15e965c3843666'
 }

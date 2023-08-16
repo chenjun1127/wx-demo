@@ -23,7 +23,7 @@ class RequestInstance {
           if (res.data.code !== 1) {
             reject(res.data);
           } else {
-            resolve(res.data.map);
+            resolve(res.data.data);
           }
         },
         fail(err) {
