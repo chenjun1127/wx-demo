@@ -2,14 +2,21 @@
 // 获取应用实例
 
 const app = getApp()
+const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
 Page({
   data: {
-    motto: 'Hello World',
+    avatarUrl: defaultAvatarUrl,
     userInfo: {} as any,
-    hasUserInfo: false,
+ 
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    canIUseGetUserProfile: false,
-    canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName') // 如需尝试获取用户信息可改为false
+ 
+
+  },
+  onChooseAvatar(e: any) {
+    const { avatarUrl } = e.detail
+    this.setData({
+      avatarUrl,
+    })
   },
   // 事件处理函数
   bindViewTap() {
@@ -32,7 +39,7 @@ Page({
         wx.setStorageSync('userInfo', userInfo)
         // 更新用户信息
         this.setData({ userInfo })
-        
+
         // 登录成功提示
         wx.showToast({
           title: '登录成功',

@@ -7,8 +7,10 @@
         <view>申请获取以下权限:</view>
         <text>获得你的公开信息(昵称、头像、地区及性别等)</text>
       </view>
-      <!-- <button open-type="getUserInfo" class='bottom' type='primary' bindgetuserinfo="bindGetUserInfo">授权</button> -->
-      <button class='bottom' type='primary' open-type="getUserInfo" bindtap="getUserProfile" size="default">授权登录</button>
+      <button class='bottom' type='primary' open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+        <image class="avatar" src="{{avatarUrl}}"></image>
+      </button>
+      <input type="nickname" class="weui-input" placeholder="请输入昵称" />
     </view>
     <view wx:else>请升级微信版本</view>
   </view>

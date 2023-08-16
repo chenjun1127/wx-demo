@@ -1,3 +1,5 @@
+import { config } from "./config";
+
 // app.ts
 App({
   globalData: {} as any,
@@ -6,7 +8,7 @@ App({
     const logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-
+    this.isLogin();
 
 
 
@@ -30,13 +32,13 @@ App({
               console.log(res.code)
               // 发送 res.code 到后台换取 openId, sessionKey, unionId
               console.log("用户的code:" + res.code);
-              // wx.request({
-              //   url: 'https://api.weixin.qq.com/sns/jscode2session?appid=自己的APPID&secret=自己的SECRET&js_code=' + res.code + '&grant_type=authorization_code',
-              //   success: (res: any) => {
-              //     console.log(res);
-              //     console.log("用户的openid:" + res.data.openid);
-              //   }
-              // })
+              wx.request({
+                url: 'https://api.weixin.qq.com/sns/jscode2session?appid=' + config.appId + '&secret=' + config.AppSecret + '&js_code=' + res.code + '&grant_type=authorization_code',
+                success: (res: any) => {
+                  console.log(res);
+                  console.log("用户的openid:" + res.data.openid);
+                }
+              })
             },
           })
         } else {
