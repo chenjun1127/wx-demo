@@ -3,11 +3,14 @@ import { config } from "./config";
 // app.ts
 App({
   globalData: {} as any,
-  onLaunch() {
+  onLaunch(options) {
     // // 展示本地存储能力
     // const logs = wx.getStorageSync('logs') || []
     // logs.unshift(Date.now())
     // wx.setStorageSync('logs', logs)
+
+    console.log('Launch options:', options.query);  // 获取小程序启动时携带的参数
+
     this.isLogin();
   },
   isLogin() {
