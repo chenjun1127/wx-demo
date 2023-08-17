@@ -1,21 +1,19 @@
 import { config } from "./config";
-
+import { getParms } from "./utils/util";
 // app.ts
 App({
   globalData: {} as any,
-  onLaunch(options) {
+  onLaunch(options: any) {
     // // 展示本地存储能力
     // const logs = wx.getStorageSync('logs') || []
     // logs.unshift(Date.now())
     // wx.setStorageSync('logs', logs)
 
-    console.log('Launch options:', options.query);  // 获取小程序启动时携带的参数
-    const appParams = {
-      "comName": options.query.comName,
-      "comLocation": options.query.comLocation,
-      "usrId": options.query.usrId
-    }
-    wx.setStorageSync('appParams', appParams)
+    console.log('Launch options:', options.query.scene);  // 获取小程序启动时携带的参数
+    var scene = decodeURIComponent(options.query.scene);
+    console.log(scene)
+    var params = getParms(scene);
+    wx.setStorageSync('appParams', params)
     this.isLogin();
   },
   isLogin() {

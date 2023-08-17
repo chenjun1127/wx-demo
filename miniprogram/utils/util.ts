@@ -13,7 +13,17 @@ export const formatTime = (date: Date) => {
   )
 }
 
-const formatNumber = (n: number) => {
+export const formatNumber = (n: number) => {
   const s = n.toString()
   return s[1] ? s : '0' + s
+}
+
+export const getParms = (scene: string) => {
+  var arrPara = scene.split("&");
+  var params = {} as any;
+  for (let param of arrPara) {
+    var arr = param.split("=");
+    params[arr[0]] = arr[1];
+  }
+  return params;
 }

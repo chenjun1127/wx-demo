@@ -4,6 +4,7 @@
 const regeneratorRuntime = require('../../utils/runtime.js')
 import { getImgBase64, getNetWorkImgBase64 } from '../../utils/imgUtils';
 import { scanAdd } from '../../api/index';
+import { getParms } from '../../utils/util';
 Page({
   data: {
     motto: 'Hello World',
@@ -32,7 +33,14 @@ Page({
       url: '../lottery/lottery',
     })
   },
-  onLoad() {
+  onLoad(query: any) {
+    if (query.scene) {
+      const scene = decodeURIComponent(query.scene);
+      var params = getParms(scene);
+      wx.setStorageSync('appParams', params)
+    }
+
+
     const appParams = wx.getStorageSync('appParams');
     console.log(appParams)
     if (!Object.keys(appParams).length) {

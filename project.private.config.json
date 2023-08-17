@@ -4,5 +4,18 @@
   "setting": {
     "compileHotReLoad": true,
     "urlCheck": false
+  },
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "scan2",
+          "pathName": "pages/index/index",
+          "query": "scene=comName%3D华莱士坂田店%26userId%3D1afdsaf%26comLocation%3D中国深圳",
+          "launchMode": "default",
+          "scene": null
+        }
+      ]
+    }
   }
 }
