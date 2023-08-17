@@ -7,7 +7,7 @@ export function scanAdd(params: any){
 }
 
 export function scanFind(params: any){
-  return RequestInstance.post({
+  return RequestInstance.get({
     url: '/scan/find',
     data: params
   })

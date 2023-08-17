@@ -7,6 +7,41 @@
     <tabs tabList="{{tabList}}" bind:getCurrentValue="handleSwitch"></tabs>
   </view>
   <view wx:for="{{tabList.length}}" wx:key="index">
-    <view wx:if="{{tabIndex==index}}">{{index}}</view>
+    <view wx:if="{{tabIndex==index}}" class="list">
+      <block wx:if="{{index==0}}">
+        <view wx:for="{{list1}}" wx:key="id" wx:for-index="i" wx:for-item="item" class="list-view">
+          <image class="img" src="{{item.wechatAvatar}}" mode="widthFix" />
+          <view class="text">
+            <view class="v1">商户名称：{{item.comName}}</view>
+            <view class="v2">订单编号：{{item.id}}</view>
+            <view class="v3">申请时间：{{item.recTime}}</view>
+          </view>
+        </view>
+      </block>
+      <block wx:if="{{index==1}}">
+        <view wx:for="{{list2}}" wx:key="id" wx:for-index="i" wx:for-item="item" class="list-view">
+          <image class="img" src="{{item.wechatAvatar}}" mode="widthFix" />
+          <view class="text">
+            <view class="v1">商户名称：{{item.comName}}</view>
+            <view class="v2">订单编号：{{item.id}}</view>
+            <view class="v3">申请时间：{{item.recTime}}</view>          
+          </view>
+        </view>
+      </block>
+      <block wx:if="{{index==2}}">
+        <view wx:for="{{list3}}" wx:key="id" wx:for-index="i" wx:for-item="item" class="list-view">
+          <image class="img" src="{{item.wechatAvatar}}" mode="widthFix" />
+          <view class="text">
+            <view class="v1">商户名称：{{item.comName}}</view>
+            <view class="v2">订单编号：{{item.id}}</view>
+            <view class="v3">申请时间：{{item.recTime}}</view>
+            <view class="v-tips">
+              <view data-phone="{{item.phone}}" bindtap="tel">拨打电话</view>
+              <!-- <view bindtap="copy" data-item='{{wechatText}}'>点击复制</view> -->
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
   </view>
 </view>

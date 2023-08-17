@@ -24,7 +24,49 @@ page {
 .switch-tab {
   width: 100%;
   background: #fff;
-  color: #888;
+  color: #666;
   box-shadow: 0rpx 9rpx 9rpx 0rpx rgba(194, 190, 190, 0.5);
+}
 
+.list {
+
+  color: #666;
+  margin-top: 15rpx;
+
+  &-view {
+    display: flex;
+    margin-bottom: 15rpx;
+    align-items: center;
+    font-size: 28rpx;
+    padding: 20rpx 20rpx;
+    background-color: #fff;
+    position: relative;
+
+    .img {
+      width: 130rpx;
+      height: 150rpx;
+      margin-right: 10px;
+    }
+
+    .text {
+      line-height: 1.7em;
+      flex: 1;
+
+      .v-tips {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding-top: 5px;
+
+        view {
+          background-color: #f90;
+          color: #fff;
+          font-size: 24rpx;
+          padding: 0 4px;
+          margin-left: 10px;
+          border-radius: 3px;
+        }
+      }
+    }
+  }
 }

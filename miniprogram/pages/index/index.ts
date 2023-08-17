@@ -33,7 +33,13 @@ Page({
     })
   },
   onLoad() {
-
+    const appParams = wx.getStorageSync('appParams');
+    console.log(appParams)
+    if (!Object.keys(appParams).length) {
+      console.log("微信小程序码参数获取失败！")
+      return;
+    };
+    this.setData({ array: [appParams.comName] });
   },
   bindPickerChange: function (e: any) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -42,7 +48,6 @@ Page({
     })
   },
   bindTips() {
-    console.log(111)
     this.setData({
       showModal: true
     })
@@ -89,12 +94,9 @@ Page({
         let picFile = res.tempFiles[0].tempFilePath
         const picData: any = await getImgBase64(picFile);
         const userInfo = wx.getStorageSync('userInfo');
-        console.log(userInfo);
-        if (!userInfo) return;
+        if (!Object.keys(userInfo).length) return;
         const avatarPicBase64: any = await getNetWorkImgBase64(userInfo.avatarUrl);
-        console.log(avatarPicBase64);
         this.setData({ avatarPicData: avatarPicBase64, picData: picData });
-
       }
     })
   },
@@ -102,25 +104,30 @@ Page({
     this.setData({ phone: e.detail.value })
   },
   async bindSubmit() {
-    console.log(this.data)
     if (this.data.picData == "" || this.data.avatarPicData == "") {
       wx.showToast({ title: "请上传评价图片！", icon: "none", duration: 1500 });
       return;
     }
     const userInfo = wx.getStorageSync('userInfo');
-    if (!userInfo) {
+    if (!Object.keys(userInfo).length) {
       console.log("微信信息获取失败！")
       return;
     };
-    const { avatarPicData, picData, phone, remark, comName, comLocation, userId } = this.data;
-    const params={
+    const appParams = wx.getStorageSync('appParams');
+    if (!Object.keys(appParams).length) {
+      console.log("微信小程序码参数获取失败！")
+      return;
+    };
+    const { avatarPicData, picData, phone, remark } = this.data;
+
+    const params = {
       "comment": {
         "wechatName": userInfo.nickName,
         "phone": phone,
         "remark": remark,
         "comName": '华莱士',
-        "comLocation": comLocation,
-        "usrId": '1691743373192536066',
+        "comLocation": appParams.comLocation ?? '',
+        "usrId": appParams.userId ?? '1691743373192536066',
         "reOpenid": wx.getStorageSync('openid'),
       },
       "map": {
@@ -128,7 +135,6 @@ Page({
         "pictro": picData
       }
     };
-    console.log(params)
     const data = await scanAdd(params)
 
     console.log(data)

@@ -10,7 +10,12 @@ App({
     // wx.setStorageSync('logs', logs)
 
     console.log('Launch options:', options.query);  // 获取小程序启动时携带的参数
-
+    const appParams = {
+      "comName": options.query.comName,
+      "comLocation": options.query.comLocation,
+      "usrId": options.query.usrId
+    }
+    wx.setStorageSync('appParams', appParams)
     this.isLogin();
   },
   isLogin() {
