@@ -11,7 +11,7 @@
         {
           "name": "scan2",
           "pathName": "pages/index/index",
-          "query": "scene=comName%3D华莱士坂田店%26userId%3D1afdsaf%26comLocation%3D中国深圳",
+          "query": "scene=id%3D1692721853170364417",
           "launchMode": "default",
           "scene": null
         }

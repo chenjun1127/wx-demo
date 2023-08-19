@@ -12,3 +12,9 @@ export function scanFind(params: any){
     data: params
   })
 }
+export function findBusiness(params: any){
+  return RequestInstance.get({
+    url: '/scan/findBusiness',
+    data: params
+  })
+}

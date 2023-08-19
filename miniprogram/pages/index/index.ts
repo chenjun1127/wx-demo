@@ -3,7 +3,7 @@
 // @ts-ignore
 const regeneratorRuntime = require('../../utils/runtime.js')
 import { getImgBase64, getNetWorkImgBase64 } from '../../utils/imgUtils';
-import { scanAdd } from '../../api/index';
+import { findBusiness, scanAdd } from '../../api/index';
 import { getParms } from '../../utils/util';
 Page({
   data: {
@@ -43,11 +43,21 @@ Page({
 
     const appParams = wx.getStorageSync('appParams');
     console.log(appParams)
+    var userInfo = wx.getStorageSync('userInfo');
+    console.log('userInfo', userInfo);
     if (!Object.keys(appParams).length) {
       console.log("微信小程序码参数获取失败！")
       return;
     };
-    this.setData({ array: [appParams.comName] });
+    this.getParmsById(appParams.id);
+
+  },
+  async getParmsById(id: string) {
+    const data = await findBusiness({ id });
+    console.log(data);
+    const { extra } = data as any;
+    this.setData({ array: [extra.petName], comName: extra.petName, userId: extra.id });
+
   },
   bindPickerChange: function (e: any) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -144,7 +154,9 @@ Page({
       }
     };
     const data = await scanAdd(params)
-
+    if (data == '添加成功') {
+      wx.showToast({ title: "提交成功！", icon: "none", duration: 1500 });
+    }
     console.log(data)
   },
   handleImgShow() {

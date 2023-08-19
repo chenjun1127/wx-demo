@@ -10,10 +10,10 @@ App({
     // wx.setStorageSync('logs', logs)
 
     console.log('Launch options:', options.query.scene);  // 获取小程序启动时携带的参数
-    var scene = decodeURIComponent(options.query.scene);
-    console.log(scene)
-    var params = getParms(scene);
-    wx.setStorageSync('appParams', params)
+    // var scene = decodeURIComponent(options.query.scene);
+    // console.log(scene)
+    // var params = getParms(scene);
+    // wx.setStorageSync('appParams', params)
     this.isLogin();
   },
   isLogin() {
