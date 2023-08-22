@@ -7,11 +7,11 @@
     </view>
     <!-- 弹窗底部按钮 -->
     <view class="footer" wx:if="{{showFooter}}">
-      <button bindtap="confirm">我知道了</button>
+      <button bindtap="confirm" class="button">我知道了</button>
       <!-- <button bindtap="cancel">取消</button> -->
     </view>
     <view class="close" bindtap="cancel">
-      <image src="../../images/close.png" mode=""/>
+      <image src="../../images/close.png" class="img" mode=""/>
     </view>
   </view>
 </view>

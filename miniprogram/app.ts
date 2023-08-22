@@ -1,5 +1,4 @@
-import { config } from "./config";
-import { getParms } from "./utils/util";
+import { config } from "./config"; 
 // app.ts
 App({
   globalData: {} as any,
