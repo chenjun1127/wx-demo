@@ -17,7 +17,7 @@
         {{array[index]}}
       </view>
     </picker>
-    <input placeholder="请输入手机号码" maxlength="11" type="tel" bindinput="getInput" />
+    <input placeholder="手机尾号（后四位）" maxlength="11" type="tel" bindinput="getInput" />
     <button class="submit-button" bindtap="bindSubmit">我要提交</button>
     <view class="radio-content">
       <label class="radio">
