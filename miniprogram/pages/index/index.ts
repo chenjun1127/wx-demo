@@ -7,11 +7,8 @@ import { findBusiness, scanAdd } from '../../api/index';
 import { getParms } from '../../utils/util';
 Page({
   data: {
-    motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    canIUseGetUserProfile: false,
     canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName'),// 如需尝试获取用户信息可改为false
     array: ['华莱士车公庙店'],
     index: 0,
@@ -56,7 +53,7 @@ Page({
     const data = await findBusiness({ id });
     console.log(data);
     const { extra } = data as any;
-    this.setData({ array: [extra.petName], comName: extra.petName, userId: extra.id });
+    this.setData({ array: [extra.petName], comName: extra.petName, userId: extra.id, comLocation: extra.comLocation });
 
   },
   bindPickerChange: function (e: any) {
@@ -136,16 +133,16 @@ Page({
       console.log("微信小程序码参数获取失败！")
       return;
     };
-    const { avatarPicData, picData, phone, remark } = this.data;
+    const { avatarPicData, picData, phone, remark, comLocation, comName, userId } = this.data;
 
     const params = {
       "comment": {
         "wechatName": userInfo.nickName,
         "phone": phone,
         "remark": remark,
-        "comName": '华莱士',
-        "comLocation": appParams.comLocation ?? '',
-        "usrId": appParams.userId ?? '1691743373192536066',
+        "comName": comName,
+        "comLocation": comLocation ?? '',
+        "usrId": userId ?? '1691743373192536066',
         "reOpenid": wx.getStorageSync('openid'),
       },
       "map": {

@@ -37,6 +37,5 @@ Page({
   },
   getInputValue(e: any) {
     this.setData({ nickName: e.detail.value })
-
   },
 })
