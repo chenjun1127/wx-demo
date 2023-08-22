@@ -11,7 +11,7 @@
       <!-- <button bindtap="cancel">取消</button> -->
     </view>
     <view class="close" bindtap="cancel">
-      <image src="../../images/close.png" class="img" mode=""/>
+      <image src="../../images/close.png" class="img" mode="" />
     </view>
   </view>
 </view>

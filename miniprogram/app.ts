@@ -3,11 +3,6 @@ import { config } from "./config";
 App({
   globalData: {} as any,
   onLaunch(options: any) {
-    // // 展示本地存储能力
-    // const logs = wx.getStorageSync('logs') || []
-    // logs.unshift(Date.now())
-    // wx.setStorageSync('logs', logs)
-
     console.log('Launch options:', options.query.scene);  // 获取小程序启动时携带的参数
     // var scene = decodeURIComponent(options.query.scene);
     // console.log(scene)
@@ -19,7 +14,6 @@ App({
     var userInfo = wx.getStorageSync('userInfo');
     if (Object.keys(userInfo).length > 0) {
       console.log('用户已经授权过')
-
       wx.reLaunch({
         url: '/pages/index/index'
       })
@@ -50,12 +44,8 @@ App({
               wx.request({
                 url: 'https://api.weixin.qq.com/sns/jscode2session?appid=' + config.appId + '&secret=' + config.AppSecret + '&js_code=' + res.code + '&grant_type=authorization_code',
                 success: (res: any) => {
-                  console.log(res);
                   console.log("用户的openid:" + res.data.openid);
-
                   wx.setStorageSync('openid', res.data.openid)
-
-
                 }
               })
             },
@@ -68,5 +58,4 @@ App({
       }
     })
   }
-
 })
