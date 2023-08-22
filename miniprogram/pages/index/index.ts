@@ -23,6 +23,7 @@ Page({
     remark: '',
     userId: '',
     wechatName: '',
+    userPhone: ''
   },
   // 事件处理函数
   bindViewTap() {
@@ -53,7 +54,7 @@ Page({
     const data = await findBusiness({ id });
     console.log(data);
     const { extra } = data as any;
-    this.setData({ array: [extra.petName], comName: extra.petName, userId: extra.id, comLocation: extra.comLocation });
+    this.setData({ array: [extra.petName], comName: extra.petName, userId: extra.id, comLocation: extra.comLocation, userPhone: extra.phone });
 
   },
   bindPickerChange: function (e: any) {
@@ -69,7 +70,7 @@ Page({
   },
   toNavigator() {
     wx.navigateTo({
-      url: '/pages/lottery/lottery'
+      url: '/pages/lottery/lottery?userPhone=' + this.data.userPhone,
     })
   },
   bindConfirm() {

@@ -36,7 +36,7 @@
             <view class="v2">订单编号：{{item.id}}</view>
             <view class="v3">申请时间：{{item.recTime}}</view>
             <view class="v-tips">
-              <view data-phone="{{item.phone}}" bindtap="tel">拨打电话</view>
+              <view bindtap="tel">拨打电话</view>
               <!-- <view bindtap="copy" data-item='{{wechatText}}'>点击复制</view> -->
             </view>
           </view>

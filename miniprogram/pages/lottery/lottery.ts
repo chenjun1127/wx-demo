@@ -50,9 +50,12 @@ Page({
     },],
     list2: [],
     list3: [],
-    wechatText: '',     
+    wechatText: '',
+    userPhone: '',
   },
-  onLoad() {
+  onLoad(options: any) {
+    console.log(222, options)
+    this.setData({ userPhone: options.userPhone });
     this.getData();
   },
   handleSwitch(e: any) {
@@ -78,9 +81,14 @@ Page({
       }
     })
   },
-  tel(event: any) {
+  tel() {
+    if (this.data.userPhone == '' || this.data.userPhone == 'undefined') {
+      wx.showToast({ title: "该商户未提供手机号码！", icon: "none", duration: 1500 });
+      return;
+    }
+    console.log(1111, this.data.userPhone)
     wx.makePhoneCall({
-      phoneNumber: event.currentTarget.dataset.phone,
+      phoneNumber: this.data.userPhone,
       success: function (_res: any) {
         console.log('拨打电话成功！');
       },
