@@ -20,8 +20,8 @@
     <input placeholder="手机尾号（后四位）" maxlength="11" type="tel" bindinput="getInput" />
     <button class="submit-button" bindtap="bindSubmit">我要提交</button>
     <view class="radio-content">
-      <label class="radio">
-        <radio value="r1" checked="true" style="transform: scale(0.6)" class="small-radio" /> <text>已阅读并同意<text bindtap="bindTips" class="tips">《微信会员协议》</text></text>
+      <label class="radio" catchtap='radioChange'>
+        <radio value="r1" checked="{{checked}}" style="transform: scale(0.6)" class="small-radio" /> <text>已阅读并同意<text bindtap="bindTips" class="tips">《微信会员协议》</text></text>
       </label>
     </view>
     <view class="tips-content">

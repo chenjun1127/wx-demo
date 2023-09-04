@@ -23,12 +23,19 @@ Page({
     remark: '',
     userId: '',
     wechatName: '',
-    userPhone: ''
+    userPhone: '',
+    checked: false,
   },
   // 事件处理函数
   bindViewTap() {
     wx.navigateTo({
       url: '../lottery/lottery',
+    })
+  },
+  radioChange(_e: any) {
+    var checked = this.data.checked;
+    this.setData({
+      "checked": !checked
     })
   },
   onLoad(query: any) {
@@ -120,6 +127,10 @@ Page({
     this.setData({ phone: e.detail.value })
   },
   async bindSubmit() {
+    if (!this.data.checked) {
+      wx.showToast({ title: "请勾选微信会员协议", icon: "none", duration: 1500 });
+      return;
+    }
     if (this.data.picData == "" || this.data.avatarPicData == "") {
       wx.showToast({ title: "请上传评价图片！", icon: "none", duration: 1500 });
       return;
