@@ -1,4 +1,5 @@
-import { config } from "./config"; 
+import { WxOpenData } from "./api/index";
+
 // app.ts
 App({
   globalData: {} as any,
@@ -37,18 +38,14 @@ App({
           //   }
           // })
           wx.login({
-            success: res => {
+            success: async res => {
               console.log(res.code)
               // 发送 res.code 到后台换取 openId, sessionKey, unionId
               console.log("用户的code:" + res.code);
-              wx.request({
-                url: 'https://api.weixin.qq.com/sns/jscode2session?appid=' + config.appId + '&secret=' + config.AppSecret + '&js_code=' + res.code + '&grant_type=authorization_code',
-                success: (res: any) => {
-                  console.log("用户的openid:" + res.data.openid);
-                  wx.setStorageSync('openid', res.data.openid)
-                }
-              })
-            },
+              const data:any = await WxOpenData({ 'js_code': res.code });
+              console.log('data' + data);
+              wx.setStorageSync('openid', data.openid)
+            }
           })
         } else {
           wx.navigateTo({
