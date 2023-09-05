@@ -1,4 +1,4 @@
-import { WxOpenData } from "./api/index";
+import { scanJoin, } from "./api/index";
 
 // app.ts
 App({
@@ -42,8 +42,7 @@ App({
               console.log(res.code)
               // 发送 res.code 到后台换取 openId, sessionKey, unionId
               console.log("用户的code:" + res.code);
-              const data:any = await WxOpenData({ 'js_code': res.code });
-              console.log('data' + data);
+              const data: any = await scanJoin({ js_code: res.code });
               wx.setStorageSync('openid', data.openid)
             }
           })

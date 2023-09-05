@@ -47,7 +47,6 @@ Page({
 
 
     const appParams = wx.getStorageSync('appParams');
-    console.log(appParams)
     var userInfo = wx.getStorageSync('userInfo');
     console.log('userInfo', userInfo);
     if (!Object.keys(appParams).length) {

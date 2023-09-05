@@ -18,9 +18,9 @@ export function findBusiness(params: any){
     data: params
   })
 }
-export function WxOpenData(params: any){
+export function scanJoin(params: any){
   return RequestInstance.get({
-    url: '/WxOpenData',
+    url: '/scan/join',
     data: params
   })
 }
