@@ -1,5 +1,5 @@
 // const host = 'http://106.75.172.90:8088'
-const host = 'https://www.pjyl.net.cn:8088';
+const host = 'https://www.pjyl.net.cn/api';
 class RequestInstance {
   static request(options = {} as any) {
     const { url, header: optHeader, ...otherOpts } = options
