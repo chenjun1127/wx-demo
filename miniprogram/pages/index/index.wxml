@@ -5,7 +5,7 @@
   </view>
   <view class="main-demo">
     <view class="demo-img" bindtap="handleImgShow">
-      <image src="../../images/demo.jpg" mode=" " />
+      <image src="{{picData}}" mode=" " />
       <view class="demo-img-tips">参考示例</view>
     </view>
     <button bindtap="bindUploadImg" class="main-demo-button" style="width: 300rpx;">上传评价截图</button>
@@ -30,7 +30,7 @@
     </view>
   </view>
   <view class="img-preview fadein" hidden="{{isHidden}}" bindtap="handleImgHide">
-    <image src="../../images/demo.jpg" mode="aspectFill" />
+    <image src="{{picData}}" mode="aspectFill" />
   </view>
   <my-modal showModal="{{showModal}}" bind:confirm="bindConfirm" bind:cancel="bindCancel">
     <view class="content" slot="content">

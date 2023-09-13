@@ -15,7 +15,7 @@ Page({
     showModal: false,
     showModal2: false,
     isHidden: true,
-    picData: '',
+    picData: '../../images/demo.jpg',
     avatarPicData: '',
     phone: '',
     comName: '',
@@ -114,11 +114,11 @@ Page({
       camera: 'back',
       success: async (res: any) => {
         let picFile = res.tempFiles[0].tempFilePath
+        console.log(picFile)
         const picData: any = await getImgBase64(picFile);
-        const userInfo = wx.getStorageSync('userInfo');
-        if (!Object.keys(userInfo).length) return;
-        const avatarPicBase64: any = await getNetWorkImgBase64(userInfo.avatarUrl);
-        this.setData({ avatarPicData: avatarPicBase64, picData: picData });
+
+        this.setData({ picData: picData });
+        console.log('avatarPicBase64', this.data.picData)
       }
     })
   },
@@ -126,25 +126,33 @@ Page({
     this.setData({ phone: e.detail.value })
   },
   async bindSubmit() {
+    console.log(1111);
     if (!this.data.checked) {
       wx.showToast({ title: "请勾选微信会员协议", icon: "none", duration: 1500 });
       return;
     }
-    if (this.data.picData == "" || this.data.avatarPicData == "") {
+
+
+    if (this.data.picData == "" || !this.data.picData.startsWith('data:image')) {
       wx.showToast({ title: "请上传评价图片！", icon: "none", duration: 1500 });
       return;
     }
     const userInfo = wx.getStorageSync('userInfo');
+    console.log(2222, userInfo);
     if (!Object.keys(userInfo).length) {
       console.log("微信信息获取失败！")
       return;
     };
+    console.log(3333);
+    // const avatarPicBase64: any = await getNetWorkImgBase64(userInfo.avatarUrl);
+    const avatarPicBase64: any = await getImgBase64(userInfo.avatarUrl);
+    console.log(4444, avatarPicBase64);
     const appParams = wx.getStorageSync('appParams');
     if (!Object.keys(appParams).length) {
       console.log("微信小程序码参数获取失败！")
       return;
     };
-    const { avatarPicData, picData, phone, remark, comLocation, comName, userId } = this.data;
+    const { picData, phone, remark, comLocation, comName, userId } = this.data;
 
     const params = {
       "comment": {
@@ -157,15 +165,25 @@ Page({
         "reOpenid": wx.getStorageSync('openid'),
       },
       "map": {
-        "wechatAvatar": avatarPicData,
+        "wechatAvatar": avatarPicBase64,
         "pictro": picData
       }
     };
-    const data = await scanAdd(params)
-    if (data == '添加成功') {
-      wx.showToast({ title: "提交成功！", icon: "none", duration: 1500 });
+    wx.showLoading({
+      title: '数据提交中',
+    })
+    try {
+      const data = await scanAdd(params)
+      console.log(data)
+      if (data == '添加成功') {
+        wx.showToast({ title: "提交成功！", icon: "none", duration: 1500 });
+      } else {
+        wx.showToast({ title: "提交失败！", icon: "none", duration: 1500 });
+      }
+    } catch (err) {
+      wx.showToast({ title: "提交失败！", icon: "none", duration: 1500 });
     }
-    console.log(data)
+
   },
   handleImgShow() {
     this.setData({ isHidden: false })

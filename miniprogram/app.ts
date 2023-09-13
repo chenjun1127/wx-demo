@@ -6,9 +6,7 @@ App({
   onLaunch(options: any) {
     console.log('Launch options:', options.query.scene);  // 获取小程序启动时携带的参数
     // var scene = decodeURIComponent(options.query.scene);
-    // console.log(scene)
-    // var params = getParms(scene);
-    // wx.setStorageSync('appParams', params)
+  
     this.isLogin();
   },
   isLogin() {
@@ -28,15 +26,7 @@ App({
   getUserInfo: function () {
     wx.getSetting({
       success: (res: any) => {
-        if (res.authSetting['scope.userInfo']) {
-          // wx.getUserInfo({
-          //   success: (res: any) => {
-          //     this.globalData.userInfo = res.userInfo;
-          //   },
-          //   fail: () => {
-          //     console.log("获取个人信息失败")
-          //   }
-          // })
+        if (res.authSetting['scope.userInfo']) {          
           wx.login({
             success: async res => {
               console.log(res.code)
