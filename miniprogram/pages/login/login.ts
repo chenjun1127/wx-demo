@@ -22,7 +22,8 @@ Page({
   onLoad() {
   },
   bindLogin() {
-    if (this.data.nickName != '' && this.data.avatarUrl != '') {
+    console.log(this.data);
+    if (this.data.nickName != '' && this.data.avatarUrl != '' && !this.data.avatarUrl.startsWith('https://mmbiz.qpic')) {
       const userInfo = {
         avatarUrl: this.data.avatarUrl,
         nickName: this.data.nickName,
