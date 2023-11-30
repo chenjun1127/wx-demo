@@ -8,6 +8,7 @@ Page({
     avatarUrl: defaultAvatarUrl,
     nickName: '',
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    wxOpenId: false,
   },
   onChooseAvatar(e: any) {
     const { avatarUrl } = e.detail
@@ -19,7 +20,26 @@ Page({
       url: '../lottery/lottery',
     })
   },
-  onLoad() {
+  onLoad(options: any) {
+    const wx_openid = options.myOpenId;
+    console.log(1111);
+    console.log(options);
+    if (wx_openid) {
+      this.setData({ wxOpenId: true });
+      wx.setStorageSync("wxOpenId", wx_openid);
+      const userInfo = wx.getStorageSync('userInfo');
+      // if (!Object.keys(userInfo).length) {
+      //   console.log("微信信息获取失败！")
+      //   wx.reLaunch({
+      //     url: '../login/login',
+      //   })
+      // }else{
+      //   wx.reLaunch({
+      //     url: '../index/index',
+      //   })
+      // }
+      
+    }
   },
   bindLogin() {
     console.log(this.data);

@@ -1,19 +1,29 @@
 // logs.ts
 // const util = require('../../utils/util.js')
-import { formatTime } from '../../utils/util'
+
 
 Page({
   data: {
     logs: [],
+    wxOpenId: false,
   },
-  onLoad() {
-    this.setData({
-      logs: (wx.getStorageSync('logs') || []).map((log: string) => {
-        return {
-          date: formatTime(new Date(log)),
-          timeStamp: log
-        }
-      }),
-    })
+  onLoad(options: any) {
+    const wx_openid = options.myOpenId;
+
+    console.log("options" + JSON.stringify(options));
+
+
+    if (wx_openid) {
+
+      wx.setStorageSync("wxOpenId", wx_openid);
+      wx.navigateTo({
+        url: '/pages/index/index'
+      })
+    } else {
+      console.log("AAAAAAAAAAAAAAAAAAAAAAAA")
+      wx.reLaunch({
+        url: '/pages/login/login'
+      })
+    }
   },
 })

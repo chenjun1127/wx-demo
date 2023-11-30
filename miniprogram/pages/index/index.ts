@@ -2,7 +2,7 @@
 // 获取应用实例
 // @ts-ignore
 const regeneratorRuntime = require('../../utils/runtime.js')
-import { getImgBase64, getNetWorkImgBase64 } from '../../utils/imgUtils';
+import { getImgBase64 } from '../../utils/imgUtils';
 import { findBusiness, scanAdd } from '../../api/index';
 import { getParms } from '../../utils/util';
 Page({
@@ -162,7 +162,8 @@ Page({
         "comName": comName,
         "comLocation": comLocation ?? '',
         "usrId": userId ?? '1691743373192536066',
-        "reOpenid": wx.getStorageSync('openid'),
+        // "reOpenid": wx.getStorageSync('openid'),
+        "reOpenid": wx.getStorageSync('wxOpenId'),        
       },
       "map": {
         "wechatAvatar": avatarPicBase64,

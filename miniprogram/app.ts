@@ -11,8 +11,10 @@ App({
   },
   isLogin() {
     var userInfo = wx.getStorageSync('userInfo');
-    if (Object.keys(userInfo).length > 0) {
+    var wxOpenId = wx.getStorageSync('wxOpenId');
+    if (Object.keys(userInfo).length > 0 && wxOpenId) {
       console.log('用户已经授权过')
+      console.log(wxOpenId);
       wx.reLaunch({
         url: '/pages/index/index'
       })
