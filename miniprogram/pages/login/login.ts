@@ -20,36 +20,18 @@ Page({
       url: '../lottery/lottery',
     })
   },
-  onLoad(options: any) {
-    const wx_openid = options.myOpenId;
-    console.log(1111);
-    console.log(options);
-    if (wx_openid) {
-      this.setData({ wxOpenId: true });
-      wx.setStorageSync("wxOpenId", wx_openid);
-      const userInfo = wx.getStorageSync('userInfo');
-      // if (!Object.keys(userInfo).length) {
-      //   console.log("微信信息获取失败！")
-      //   wx.reLaunch({
-      //     url: '../login/login',
-      //   })
-      // }else{
-      //   wx.reLaunch({
-      //     url: '../index/index',
-      //   })
-      // }
-      
-    }
+  onLoad(_options: any) {
+
   },
   bindLogin() {
-    console.log(this.data);
+    console.log("111",this.data);
     if (this.data.nickName != '' && this.data.avatarUrl != '' && !this.data.avatarUrl.startsWith('https://mmbiz.qpic')) {
       const userInfo = {
         avatarUrl: this.data.avatarUrl,
         nickName: this.data.nickName,
       }
       wx.setStorageSync('userInfo', userInfo)
-      wx.reLaunch({
+      wx.navigateTo({
         url: '/pages/index/index'
       })
     } else {

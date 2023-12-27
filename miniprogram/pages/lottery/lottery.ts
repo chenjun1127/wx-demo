@@ -28,7 +28,7 @@ Page({
   },
   async getData() {
     const data = await scanFind({
-      "reOpenid": wx.getStorageSync('openid'),
+      "reOpenid": wx.getStorageSync('wxOpenId'),
     })
     const { extra } = data as any;
     this.setData({
